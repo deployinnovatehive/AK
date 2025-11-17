@@ -3,269 +3,461 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Alaknanda Solutions | Financial Services</title>
-    <link rel="stylesheet" href="../static/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
+    <title>Alaknanda Solutions - Financial Services</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
   </head>
   <body>
-    <!-- Header -->
-    <header class="navbar">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navbar -->
+    <header class="navbar" role="banner">
       <div class="logo">
         <img
-          src="../static/logo 2.png"
+          src="{{ url_for('static', filename='img/logo 1.png') }}"
           alt="Alaknanda Solutions Logo"
-          class="logo-img"
         />
-        <span>Alaknanda Solutions</span>
       </div>
-      <div class="navbar-right">
-        <nav>
-          <ul>
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#about">About us</a></li>
-            <li><a href="#vision">Vision</a></li>
-            <li><a href="#services">Services</a></li>
-          </ul>
-        </nav>
-        <a href="#contact" class="contact-btn">Contact Us</a>
-      </div>
-      <button id="mobile-menu-btn" class="mobile-menu-btn">
-        <i class="fas fa-bars"></i>
-      </button>
+      <nav role="navigation" aria-label="Main Navigation">
+        <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="nav-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul id="nav-menu" role="menubar">
+          <li role="none"><a href="#home" role="menuitem">Home</a></li>
+          <li role="none"><a href="#personal-loan" role="menuitem">Personal Loan</a></li>
+          <li role="none"><a href="#business-loan" role="menuitem">Business Loan</a></li>
+          <li role="none"><a href="#placement" role="menuitem">Placement</a></li>
+          <li class="dropdown" role="none">
+            <a href="#" class="dropdown-toggle" role="menuitem" aria-haspopup="true" aria-expanded="false">More Products</a>
+            <div class="dropdown-content" role="menu">
+              <div class="dropdown-header">
+                <h4>Alaknanda Solution</h4>
+                <span>(Proprietor form)</span>
+              </div>
+              <ul class="dropdown-menu" role="menu">
+                <li role="none"><a href="mice.html" role="menuitem">MICE</a></li>
+                <li role="none"><a href="insurance.html" role="menuitem">Insurance</a></li>
+              </ul>
+            </div>
+          </li>
+          <li role="none"><a href="#about-us" role="menuitem">About Us</a></li>
+          <li role="none"><a href="#contact" role="menuitem">Contact Us</a></li>
+        </ul>
+      </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-      <div class="hero-text">
-        <h1>Your Trusted Partner<br />for Financial Solutions</h1>
-        <p>
-          Alaknanda Solutions provides accessible and flexible loan options to
-          help you achieve your personal and business goals. Experience seamless
-          applications and dedicated support.
-        </p>
-        <a
-          href="#services"
-          class="primary-btn"
-          style="background: #0078e8; color: #ffffff"
-          >Explore Loans</a
-        >
-      </div>
-    </section>
+    <main id="main-content">
+      <!-- Hero Section -->
+      <section id="home" class="hero" aria-label="Hero Slider">
+        <div class="hero-slider">
+          <!-- Slide 1: Personal Loan -->
+          <div class="hero-slide active" aria-label="Personal Loan Slide">
+            <div class="hero-text">
+              <h1>Need a <span>Personal Loan</span></h1>
+              <p>
+                Get instant personal loans with competitive interest rates and
+                flexible repayment options.
+              </p>
+            </div>
+            <div class="hero-image">
+              <img
+                src="{{ url_for('static', filename='img/509020-PI3106-79.jpg') }}"
+                alt="Person reviewing loan documents on tablet"
+                loading="lazy"
+              />
+            </div>
+          </div>
 
-    <!-- About Section -->
-    <section id="about" class="about-section">
-      <div class="about-card">
-        <div class="about-image">
-          <img src="../static/aboutus.jpg" alt="Team Discussion" />
+          <!-- Slide 2: Business Loan -->
+          <div class="hero-slide" aria-label="Business Loan Slide">
+            <div class="hero-text">
+              <h1>Unsecured <span>Business Loan</span></h1>
+              <p>
+                Get unsecured Business Loan from India's top lenders basis
+                business banking and financial.
+              </p>
+            </div>
+            <div class="hero-image">
+              <img
+                src="{{ url_for('static', filename='img/picture-two-young-businessmen-street-shaking-hands.jpg') }}"
+                alt="Two businessmen shaking hands on the street"
+                loading="lazy"
+              />
+            </div>
+          </div>
         </div>
-        <div class="about-content">
-          <h1>About Alaknanda Solutions</h1>
+
+        <div class="slider-dots" role="tablist">
+          <button class="dot active" data-slide="0" role="tab" aria-label="Show Personal Loan Slide" aria-selected="true"></button>
+          <button class="dot" data-slide="1" role="tab" aria-label="Show Business Loan Slide" aria-selected="false"></button>
+        </div>
+      </section>
+
+      <!-- Loan & Services Section -->
+      <section class="services" aria-labelledby="services-heading">
+        <h2 id="services-heading">Types of Loans</h2>
+        <div class="service-card-container">
+          <div class="service-card">
+            <img
+              src="{{ url_for('static', filename='img/PL.png') }}"
+              alt="Personal Loan Icon"
+              loading="lazy"
+            />
+            <h3>PERSONAL LOAN</h3>
+            <p>
+              This allows consumers to compare the key loan features offered by
+              top lenders.
+            </p>
+            <a href="#personal-loan">Check Eligibility →</a>
+          </div>
+
+          <div class="service-card">
+            <img
+              src="{{ url_for('static', filename='img/BL.png') }}"
+              alt="Business Loan Icon"
+              loading="lazy"
+            />
+            <h3>BUSINESS LOAN</h3>
+            <p>
+              Expand your business with loans & overdrafts at low interest rates
+              from Banks & NBFCs.
+            </p>
+            <a href="#business-loan">Check Eligibility →</a>
+          </div>
+
+          <div class="service-card">
+            <img
+              src="{{ url_for('static', filename='img/HL.png') }}"
+              alt="Home Loan Icon"
+              loading="lazy"
+            />
+            <h3>HOME LOAN / LAP</h3>
+            <p>
+              Get Home loans for your dream home & encash your property for
+              business/non-business needs.
+            </p>
+            <a href="#home-loan">Check Eligibility →</a>
+          </div>
+
+          <div class="service-card">
+            <img
+              src="{{ url_for('static', filename='img/ML.png') }}"
+              alt="Machine Loan Icon"
+              loading="lazy"
+            />
+            <h3>MACHINE LOAN</h3>
+            <p>
+              Get financing for industrial machinery and equipment at competitive
+              rates.
+            </p>
+            <a href="#machine-loan">Check Eligibility →</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Loan Offers Section -->
+      <section id="personal-loan" class="offers" aria-labelledby="personal-loan-heading">
+        <div class="offer">
+          <div class="offer-img">
+            <img src="{{ url_for('static', filename='img/PL2[1].png') }}" alt="Illustration of personal loan benefits" loading="lazy" />
+          </div>
+          <div class="offer-details">
+            <h2 id="personal-loan-heading">Personal Loan offers from Leading bank's and NBFC'S</h2>
+            <div class="offer-points">
+              <ul>
+                <li>⦿ Unsecured Salaried Personal Loans upto ₹1 Cr *</li>
+                <li>⦿ Flexi Over Draft Facility Available</li>
+                <li>⦿ Quick & Easy process</li>
+              </ul>
+              <ul>
+                <li>⦿ Rate Of Interest starts from 10.45% on reducing balance</li>
+                <li>
+                  ⦿ Convert Credit Card outstanding from 70% reducing to 15%
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="offer alternate">
+          <div class="offer-img">
+            <img
+              src="{{ url_for('static', filename='img/HL2.png') }}"
+              alt="Illustration of home loan benefits"
+              loading="lazy"
+            />
+          </div>
+          <div class="offer-details">
+            <h2 id="home-loan-heading">
+              Get Home loans for your dream home & encash your property for
+              business/non business requirements
+            </h2>
+            <div class="offer-points">
+              <ul>
+                <li>⦿ Home Loan up to ₹10 Cr from India's top Banks & HFCs</li>
+                <li>⦿ Top-up & balance transfer facility available</li>
+                <li>⦿ Loan for commercial property purchase</li>
+              </ul>
+              <ul>
+                <li>
+                  ⦿ Home Loans for under construction, constructed, Land etc
+                </li>
+                <li>⦿ Loan Against Property up to ₹15 Cr</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Us Section -->
+      <section id="about-us" class="about-us" aria-labelledby="about-heading">
+        <div class="about-container">
+          <h2 id="about-heading">About Alaknanda Solutions</h2>
           <p>
             Founded and led by Mr. Mukesh Manjkhola, a banking and finance
-            professional with over 32 years of experience, Alaknanda Solutions
-            is a trusted name in financial consulting and loan advisory
-            services. With deep expertise in strategic planning, channel
-            management, and nationwide business operations, the company provides
-            personalized financial solutions that empower both individuals and
-            businesses. Committed to transparency, integrity, and results,
-            Alaknanda Solutions ensures every client receives expert guidance
-            and meaningful support throughout their financial journey.
+            professional with over 32 years of experience, Alaknanda Solutions is
+            a trusted name in financial consulting and loan advisory services.
+            With deep expertise in strategic planning, channel management, and
+            nationwide business operations, the company provides personalized
+            financial solutions that empower both individuals and businesses.
+            Committed to transparency, integrity, and results, Alaknanda Solutions
+            ensures every client receives expert guidance and meaningful support
+            throughout their financial journey.
           </p>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Mission, Vision & Values -->
-    <section id="vision" class="mission-vision-section">
-      <h1 class="section-title" style="color: #0078e8">
-        Our Mission, Vision & Values
-      </h1>
-      <div class="swiper mission-vision-swiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <div class="card mission">
-              <h2 style="color: #0078e8">Our Mission</h2>
+      <!-- Mission, Vision & Values Section -->
+      <section id="mission-vision" class="mission-vision" aria-labelledby="mission-vision-heading">
+        <div class="container">
+          <h2 id="mission-vision-heading">Our Mission, Vision & Values</h2>
+          <div class="mv-grid">
+            <div class="mv-card">
+              <h3>Our Mission</h3>
               <p>
                 "To serve our clients with dedication and excellence by offering
                 tailored services that solve real problems, build trust, and
                 support their success."
               </p>
             </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="card vision">
-              <h2 style="color: #0078e8">Our Vision</h2>
+            <div class="mv-card">
+              <h3>Our Vision</h3>
               <p>
-                "To be the most trusted and preferred service partner,
-                recognized for delivering excellence, innovation, and value
-                across every client interaction."
+                "To be the most trusted and preferred service partner, recognized
+                for delivering excellence, innovation, and value across every
+                client interaction."
               </p>
             </div>
+            <div class="mv-card">
+              <h3>Our Values</h3>
+              <div class="values-list">
+                <span>Customer Centric</span>
+                <span>Integrity</span>
+                <span>Trust</span>
+                <span>Excellence</span>
+              </div>
+            </div>
           </div>
-          <div class="swiper-slide">
-            <div class="card values">
-              <h2 style="color: #0078e8">Our Values</h2>
+        </div>
+      </section>
+
+      <!-- Partners Section -->
+      <section id="partners" class="partners" aria-labelledby="partners-heading">
+        <h2 id="partners-heading">All Leading banking and NBFCS</h2>
+        <div class="partner-logos">
+          <img
+            src="{{ url_for('static', filename='img/AU.png') }}"
+            alt="AU Bank"
+            loading="lazy"
+          />
+          <img
+            src="{{ url_for('static', filename='img/Bajaj.png') }}"
+            alt="Bajaj Finance"
+            loading="lazy"
+          />
+          <img
+            src="{{ url_for('static', filename='img/Chola.jpeg') }}"
+            alt="Cholamandalam Finance"
+            loading="lazy"
+          />
+          <img
+            src="{{ url_for('static', filename='img/Godrej.png') }}"
+            alt="Godrej Finance"
+            loading="lazy"
+          />
+          <img
+            src="{{ url_for('static', filename='img/Piramal.png') }}"
+            alt="Piramal Finance"
+            loading="lazy"
+          />
+          <img
+            src="{{ url_for('static', filename='img/Protium.png') }}"
+            alt="Protium Finance"
+            loading="lazy"
+          />
+          <img
+            src="{{ url_for('static', filename='img/SBI_HL.png') }}"
+            alt="State Bank of India"
+            loading="lazy"
+          />
+          <img
+            src="{{ url_for('static', filename='img/TruHome.png') }}"
+            alt="TruHome Finance"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
+      <!-- Contact Us Section -->
+      <section id="contact" class="contact-section" aria-labelledby="contact-heading">
+        <div class="container">
+          <h2 id="contact-heading">Get in Touch</h2>
+          <div class="contact-content">
+            <div class="contact-form">
+              <form action="#" method="post">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Your Full Name"
+                    required
+                    aria-required="true"
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="your.email@example.com"
+                    required
+                    aria-required="true"
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="+91 1234567890"
+                    required
+                    aria-required="true"
+                  />
+                </div>
+                <div class="form-group">
+                  <textarea
+                    name="message"
+                    placeholder="Tell us how we can help you..."
+                    rows="5"
+                    required
+                    aria-required="true"
+                  ></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+              </form>
+            </div>
+
+            <div class="contact-info">
+              <h3>Contact Details</h3>
+              <div class="contact-details">
+                <p>
+                  <i class="location-icon" aria-hidden="true"></i> 
+                  <span>FB-147, High Street Business Park,<br />Kapurwadi, Thane (W)-400 607, Maharashtra</span>
+                </p>
+                <p>
+                  <i class="phone-icon" aria-hidden="true"></i> 
+                  <span>+91 9769207860 | +91 9702001230</span>
+                </p>
+                <p>
+                  <i class="email-icon" aria-hidden="true"></i> 
+                  <span>info@alaknandasolutions.in</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+      <div class="footer-container">
+        <div class="footer-main">
+          <div class="footer-brand">
+            <img
+              src="{{ url_for('static', filename='img/logo 1.png') }}"
+              alt="Alaknanda Solutions Logo"
+              class="footer-logo"
+              loading="lazy"
+            />
+            <h3>Alaknanda Solutions</h3>
+            <p>
+              Your trusted partner for financial solutions. Empowering
+              individuals and businesses with reliable loan options.
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <div class="footer-section">
+              <h4>Quick Links</h4>
               <ul>
-                <li>Customer Centric</li>
-                <li>Integrity</li>
-                <li>Trust</li>
-                <li>Excellence</li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about-us">About Us</a></li>
+                <li><a href="#mission-vision">Mission & Vision</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
               </ul>
             </div>
-          </div>
-        </div>
-        <div class="swiper-pagination"></div>
-      </div>
-    </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services-section">
-      <h1 class="section-title" style="color: #0078e8">Our Services</h1>
-
-      <div class="services-category-container">
-        <div class="services-category">
-          <h3 class="subheading">Alaknanda Solution Services</h3>
-          <div class="scroll-container">
-            <div class="service-card">
-              <a href="/loan" class="service-link">
-                <i class="fas fa-money-bill-wave service-icon"></i>
-                <h2>Loans</h2>
-                <p>
-                  Explore our comprehensive range of loan options including
-                  personal, home, business, and vehicle loans. Find the perfect
-                  financing solution for your needs.
-                </p>
-              </a>
+            <div class="footer-section">
+              <h4>Our Services</h4>
+              <ul>
+                <li><a href="#personal-loan">Personal Loan</a></li>
+                <li><a href="#business-loan">Business Loan</a></li>
+                <li><a href="#home-loan">Home Loan</a></li>
+                <li><a href="#machine-loan">Machine Loan</a></li>
+              </ul>
             </div>
-            <div class="service-card">
-              <a href="/recruitment" class="service-link">
-                <i class="fas fa-briefcase service-icon"></i>
-                <h2>Recruitment</h2>
+
+            <div class="footer-section">
+              <h4>Contact Info</h4>
+              <div class="contact-details">
                 <p>
-                  Employment opportunities and career guidance services for
-                  professional growth.
+                  <i class="location-icon" aria-hidden="true"></i> 
+                  <span>FB-147, High Street Business Park,<br />Kapurwadi, Thane (W)-400 607, Maharashtra</span>
                 </p>
-              </a>
+                <p>
+                  <i class="phone-icon" aria-hidden="true"></i> 
+                  <span>+91 9769207860 | +91 9702001230</span>
+                </p>
+                <p>
+                  <i class="email-icon" aria-hidden="true"></i> 
+                  <span>info@alaknandasolutions.in</span>
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="services-category">
-          <h3 class="subheading">Other Services</h3>
-          <div class="scroll-container">
-            <div class="service-card">
-              <a href="/insurance" class="service-link">
-                <i class="fas fa-shield-alt service-icon"></i>
-                <h2>Insurance</h2>
-                <p>
-                  Comprehensive insurance solutions to protect your assets and
-                  provide peace of mind.
-                </p>
-              </a>
-            </div>
-            <div class="service-card">
-              <a href="/mice" class="service-link">
-                <i class="fas fa-hand-holding-usd service-icon"></i>
-                <h2>MICE</h2>
-                <p>
-                  Small loan options for quick financial needs with flexible
-                  terms and fast approval.
-                </p>
-              </a>
-            </div>
+        <div class="footer-bottom">
+          <div class="footer-bottom-content">
+            <p>© 2025 Alaknanda Solutions. All rights reserved.</p>
+            <p class="developed-by">
+              Developed with by <span>InnovateHive</span>
+            </p>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-      <div class="contact-form">
-        <h2>Get in Touch</h2>
-        <form id="contactForm">
-          <input type="text" placeholder="Your Full Name" required />
-          <input type="email" placeholder="your.email@example.com" required />
-          <input type="tel" placeholder="+91 1234567890" required />
-          <textarea
-            placeholder="Tell us how we can help you..."
-            required
-          ></textarea>
-          <button type="submit">Send Message</button>
-        </form>
-      </div>
-      <div class="contact-details">
-        <h2>Contact Details</h2>
-        <p>
-          FB-147, High Street Business Park,<br />Kapurwadi, Thane (W)-400 607,
-          Maharashtra
-        </p>
-        <p>+91 9769207860 | +91 9702001230 | +91 9987600400</p>
-        <p>info@alaknandasolutions.in</p>
-      </div>
-    </section>
-
-    <footer>
-      <div class="footer-content">
-        <div class="footer-section">
-          <h3>Alaknanda Solutions</h3>
-          <p>
-            Your trusted partner for financial solutions. Empowering individuals
-            and businesses with reliable loan options.
-          </p>
-        </div>
-        <div class="footer-section">
-          <h3>Quick Links</h3>
-          <ul>
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#vision">Mission & Vision</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h3>Contact Info</h3>
-          <p>
-            FB-147, High Street Business Park,<br />Kapurwadi, Thane (W)-400
-            607, Maharashtra
-          </p>
-          <p>+91 9769207860 | +91 9702001230</p>
-          <p>info@alaknandasolutions.in</p>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2025 Alaknanda Solutions. All rights reserved.</p>
-        <p class="developer-credit">
-          Developed by
-          <a href="https://www.innovatehive.in/" target="_blank">InnovateHive</a
-          >.
-        </p>
       </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="../static/script.js"></script>
+    <!-- WhatsApp Floating Button -->
+    <div class="whatsapp-float">
+      <a href="https://wa.me/919702001230" target="_blank" class="whatsapp-link" aria-label="Contact us on WhatsApp">
+        <img src="{{ url_for('static', filename='img/WhatsApp.png') }}" alt="WhatsApp" class="whatsapp-icon">
+        <span class="whatsapp-tooltip">Chat with us on WhatsApp</span>
+      </a>
+    </div>
 
-    <a
-      href="https://wa.me/919702001230"
-      class="whatsapp-float"
-      target="_blank"
-      aria-label="WhatsApp Chat"
-    >
-      <i class="fab fa-whatsapp"></i>
-    </a>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
   </body>
 </html>
