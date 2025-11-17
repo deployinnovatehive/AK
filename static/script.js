@@ -1,114 +1,113 @@
-// Simple contact form handler
-const contactForm = document.getElementById("contactForm");
-if (contactForm) {
-  contactForm.addEventListener("submit", function(e) {
+console.log("Financial Services Website Loaded Successfully!");
+
+// Hero Slider Functionality
+let currentSlide = 0;
+const slides = document.querySelectorAll('.hero-slide');
+const dots = document.querySelectorAll('.dot');
+
+function showSlide(index) {
+  // Hide all slides
+  slides.forEach(slide => slide.classList.remove('active'));
+  dots.forEach(dot => dot.classList.remove('active'));
+
+  // Show current slide
+  slides[index].classList.add('active');
+  dots[index].classList.add('active');
+}
+
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
+}
+
+// Auto slide every 4 seconds
+setInterval(nextSlide, 4000);
+
+// Dot click functionality
+dots.forEach((dot, index) => {
+  dot.addEventListener('click', () => {
+    currentSlide = index;
+    showSlide(currentSlide);
+  });
+});
+
+// Initialize first slide
+showSlide(0);
+
+// Mobile Menu Toggle
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navMenu.classList.toggle('active');
+});
+
+// Close mobile menu when clicking on a link
+document.querySelectorAll('#nav-menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('active');
+  });
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('active');
+  }
+});
+
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
     e.preventDefault();
-    alert("Thank you for contacting Alaknanda Solutions! We'll get back to you soon.");
-    this.reset();
-  });
-}
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      const headerOffset = 80;
+      const elementPosition = target.offsetTop;
+      const offsetPosition = elementPosition - headerOffset;
 
-// Navbar scroll effect
-window.addEventListener("scroll", () => {
-  const navbar = document.querySelector(".navbar");
-  if (window.scrollY > 50) {
-    navbar.classList.add("scrolled");
-  } else {
-    navbar.classList.remove("scrolled");
-  }
-});
-
-// Animation on scroll
-function animateOnScroll(selector) {
-  const elements = document.querySelectorAll(selector);
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.animationPlayState = "running";
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  elements.forEach(el => {
-    el.style.animationPlayState = "paused";
-    observer.observe(el);
-  });
-}
-
-animateOnScroll(".hero-text h1, .hero-text p, .primary-btn");
-animateOnScroll(".hero-img img");
-animateOnScroll(".about-card");
-animateOnScroll(".card");
-animateOnScroll(".service-card");
-
-// Mobile menu toggle
-const mobileMenuBtn = document.getElementById("mobile-menu-btn");
-if (mobileMenuBtn) {
-  mobileMenuBtn.addEventListener("click", function() {
-    const nav = document.querySelector(".navbar nav");
-    if (nav) {
-      nav.classList.toggle("active");
-    }
-  });
-}
-
-// Close mobile menu when clicking a link
-document.querySelectorAll(".navbar nav a").forEach(link => {
-  link.addEventListener("click", function() {
-    const nav = document.querySelector(".navbar nav");
-    if (nav) {
-      nav.classList.remove("active");
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   });
 });
 
-// Initialize Swiper for Mission & Vision - always initialize with breakpoints for responsive behavior
-document.addEventListener('DOMContentLoaded', function() {
-  const swiperElement = document.querySelector('.mission-vision-swiper');
-  if (swiperElement) {
-    const missionVisionSwiper = new Swiper('.mission-vision-swiper', {
-      slidesPerView: 1,
-      spaceBetween: 20,
-      loop: true,
-      initialSlide: 0,
-      autoplay: {
-        delay: 5000,
-        disableOnInteraction: false,
-        pauseOnMouseEnter: true,
-      },
-      speed: 800,
-      effect: 'slide',
-      grabCursor: true,
-      centeredSlides: false,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-        dynamicBullets: true,
-      },
-      breakpoints: {
-        769: {
-          slidesPerView: 2,
-          spaceBetween: 20,
-          autoplay: {
-            enabled: true,
-          },
-        },
-        1025: {
-          slidesPerView: 3,
-          spaceBetween: 20,
-          autoplay: {
-            enabled: false, // Disable autoplay on desktop for static display
-          },
-          pagination: {
-            enabled: false,
-          },
-        }
-      },
-      observer: true,
-      observeParents: true,
-      watchSlidesProgress: true,
-    });
-    console.log('Swiper initialized with breakpoints');
-  }
+// Touch/swipe support for mobile hero slider
+let startX = 0;
+let endX = 0;
+
+const heroSlider = document.querySelector('.hero-slider');
+
+heroSlider.addEventListener('touchstart', (e) => {
+  startX = e.touches[0].clientX;
 });
+
+heroSlider.addEventListener('touchend', (e) => {
+  endX = e.changedTouches[0].clientX;
+  handleSwipe();
+});
+
+function handleSwipe() {
+  const threshold = 50; // minimum distance for swipe
+  const diff = startX - endX;
+
+  if (Math.abs(diff) > threshold) {
+    if (diff > 0) {
+      // Swipe left - next slide
+      nextSlide();
+    } else {
+      // Swipe right - previous slide
+      prevSlide();
+    }
+  }
+}
+
+function prevSlide() {
+  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+  showSlide(currentSlide);
+}
